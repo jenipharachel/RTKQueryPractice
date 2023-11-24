@@ -7,7 +7,7 @@ export const todoApi = createApi({
     getTodos: builder.query({
       query: () => ({
         url: '/todos/',
-        method: 'Get',
+        method: 'GET',
       }),
     }),
     createTodo: builder.mutation({

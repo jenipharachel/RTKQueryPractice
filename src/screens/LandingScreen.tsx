@@ -11,7 +11,7 @@ export const LandingScreen = () => {
   return (
     <View>
       {isLoading ? (
-        <Text>Hello</Text>
+        <Text>Loading...</Text>
       ) : (
         <FlatList data={todoList} renderItem={renderItem} />
       )}
