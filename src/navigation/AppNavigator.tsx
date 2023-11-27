@@ -11,7 +11,6 @@ export const AppNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          headerShown: false,
           gestureEnabled: false,
         }}>
         <Stack.Screen name="LandingScreen" component={LandingScreen} />
