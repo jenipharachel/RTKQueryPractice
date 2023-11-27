@@ -1,14 +1,25 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 export const Todo = ({todo}) => {
+  const navigation = useNavigation();
+
+  const navigateToDetailScreen = () =>
+    navigation.navigate('TodoDetailScreen', {id: todo.id});
+
+  console.log('component ', todo);
+
   return (
-    <View style={styles.container} key={todo.id}>
+    <TouchableOpacity
+      style={styles.container}
+      key={todo.id}
+      onPress={navigateToDetailScreen}>
       <Text style={{flex: 3}}>
         {todo.id}. {todo.title}
       </Text>
       <Text>{todo.completed ? 'Completed' : 'In progress'}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

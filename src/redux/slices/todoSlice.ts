@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-interface todo {
+export interface todo {
   userId: string;
   id: number | null;
   title: string;

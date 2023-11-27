@@ -1,5 +1,6 @@
 import React from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
+
 import {useLandingScreen} from '../hooks/useLandingScreen';
 import {Todo} from '../components/Todo';
 
@@ -9,7 +10,9 @@ export const LandingScreen = () => {
   const renderItem = ({item}) => <Todo key={item.id} todo={item} />;
 
   return (
-    <View>
+    <View style={styles.container}>
+      <Text style={styles.header}>Todos</Text>
+
       {isLoading ? (
         <Text>Loading...</Text>
       ) : (
@@ -18,3 +21,12 @@ export const LandingScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {flex: 1, backgroundColor: 'white'},
+  header: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
+});

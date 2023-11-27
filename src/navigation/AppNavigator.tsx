@@ -1,11 +1,22 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {LandingScreen} from '../screens/LandingScreen';
+import {TodoDetailScreen} from '../screens/TodoDetailScreen';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+
+const Stack = createNativeStackNavigator();
 
 export const AppNavigator = () => {
   return (
     <NavigationContainer>
-      <LandingScreen />
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+          gestureEnabled: false,
+        }}>
+        <Stack.Screen name="LandingScreen" component={LandingScreen} />
+        <Stack.Screen name="TodoDetailScreen" component={TodoDetailScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

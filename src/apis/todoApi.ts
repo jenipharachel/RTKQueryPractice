@@ -10,6 +10,12 @@ export const todoApi = createApi({
         method: 'GET',
       }),
     }),
+    getTodoDetail: builder.query({
+      query: id => ({
+        url: `/todos/${id}`,
+        method: 'GET',
+      }),
+    }),
     createTodo: builder.mutation({
       query: body => ({
         url: '/todos',
@@ -20,4 +26,5 @@ export const todoApi = createApi({
   }),
 });
 
-export const {useGetTodosQuery, useCreateTodoMutation} = todoApi;
+export const {useGetTodosQuery, useGetTodoDetailQuery, useCreateTodoMutation} =
+  todoApi;
