@@ -8,8 +8,6 @@ export const Todo = ({todo}) => {
   const navigateToDetailScreen = () =>
     navigation.navigate('TodoDetailScreen', {id: todo.id});
 
-  console.log('component ', todo);
-
   return (
     <TouchableOpacity
       style={styles.container}

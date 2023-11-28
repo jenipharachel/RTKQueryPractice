@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Switch,
@@ -10,8 +10,6 @@ import {
 import {useTodoDetailScreen} from '../hooks/useTodoDetailScreen';
 
 export const TodoDetailScreen = props => {
-  const [isEditView, setIsEditView] = useState(false);
-
   const {id} = props.route.params;
   const {
     todoDetail,
@@ -20,9 +18,10 @@ export const TodoDetailScreen = props => {
     onChangeTodoTitle,
     isCompleted,
     onStatusChange,
+    isEditView,
+    onDoneEditing,
+    onEditPress,
   } = useTodoDetailScreen(id);
-
-  console.log(todoDetail, 'todoDetail', isLoading);
 
   if (isLoading) {
     return (
@@ -54,7 +53,7 @@ export const TodoDetailScreen = props => {
                 value={isCompleted}
               />
             </View>
-            <TouchableOpacity onPress={() => setIsEditView(false)}>
+            <TouchableOpacity onPress={onDoneEditing}>
               <Text style={styles.edit}>Done</Text>
             </TouchableOpacity>
           </>
@@ -66,7 +65,7 @@ export const TodoDetailScreen = props => {
                 Status: {todoDetail?.completed ? 'Completed' : 'In progress'}
               </Text>
             </View>
-            <TouchableOpacity onPress={() => setIsEditView(true)}>
+            <TouchableOpacity onPress={onEditPress}>
               <Text style={styles.edit}>Edit</Text>
             </TouchableOpacity>
           </>

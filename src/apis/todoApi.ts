@@ -2,6 +2,9 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 export const todoApi = createApi({
   reducerPath: 'todoApi',
+  refetchOnFocus: true,
+  refetchOnReconnect: true,
+  tagTypes: ['todos'],
   baseQuery: fetchBaseQuery({baseUrl: 'https://jsonplaceholder.typicode.com'}),
   endpoints: builder => ({
     getTodos: builder.query({
@@ -22,9 +25,25 @@ export const todoApi = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['todos'],
+    }),
+    updateTodo: builder.mutation({
+      query: ({id, updatedTodo}) => ({
+        url: `/todos/${id}`,
+        method: 'PUT',
+        body: updatedTodo,
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      }),
+      invalidatesTags: ['todos'],
     }),
   }),
 });
 
-export const {useGetTodosQuery, useGetTodoDetailQuery, useCreateTodoMutation} =
-  todoApi;
+export const {
+  useGetTodosQuery,
+  useGetTodoDetailQuery,
+  useCreateTodoMutation,
+  useUpdateTodoMutation,
+} = todoApi;
